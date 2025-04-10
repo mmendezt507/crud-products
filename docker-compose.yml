@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: crud-products
+    restart: unless-stopped
+    working_dir: /var/www/html/crud-products
+    volumes:
+      - .:/var/www/html/crud-products
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:latest
+    container_name: mariadbp
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravel
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+volumes:
+  mariadb_data:
+
