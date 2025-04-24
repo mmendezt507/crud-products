@@ -29,13 +29,31 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        #10/0/2025
+        #Validaciones
+        $messages = [
+            'required' => 'El campo :attribute es requerido',
+            'numeric' => 'El campo :attribute debe ser numerico'
+        ];
+        $validate = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price'=> 'required|numeric', //['required','numeric'] son sintaxis equivalentes
+        ], $messages);
+
         $product = [
             "name"=> $request->name,
             "description"=> $request->description,
             "price"=> $request->price,
         ];
         Product::create($product);
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('success');
+        /*$product = new Product();
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->save*/
+
+
     }
 
     /**
