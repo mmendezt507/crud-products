@@ -3,11 +3,14 @@
 @section('title','Lista de productos')
 
 @section('content')
-    <div>
+    <div class="container">
+        <div class="p-3 d-flex flex-row-reverse">
+            <a href={{route('products.create')}} class="btn btn-success rounded-pill px-3"> Agregar Nuevo Producto</a>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Descripci&oacute;n</th>
                     <th scope="col">Precio</th>
@@ -29,7 +32,5 @@
             </tbody>
         </table>
     </div>
-    <div class="p-3 d-flex flex-row-reverse">
-        <a href={{route('products.create')}} class="btn btn-success rounded-pill px-3"> Agregar Nuevo Producto</a>
-    </div>
+
 @endsection
